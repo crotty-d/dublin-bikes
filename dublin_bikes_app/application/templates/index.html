@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Dublin Bikes Tracker</title>
+    <meta name="description" content="Web appliation to provide latest availability for Dublin Bikes, along with weather information and analysis of historical bike data."/>
+    <!-- CSS files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/media-queries.css') }}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!--Icon shown on browser tabs -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename = 'images/logo.svg') }}"/>
+</head>
+
+<body>
+    <!-- Page content -->
+    <div class="content">
+        <!-- Top of page location; target of 'back to top' links -->
+        <div id="top"></div>
+        <!-- Header (introduction) section -->
+        <header>
+            <!-- Header title -->
+            <div class="title">
+                <a href="/"><img src="{{ url_for('static', filename = 'images/logo.svg') }}" alt="site logo"></a>
+                <h1>Dublin&nbspBikes Tracker</h1>
+            </div>
+        </header>
+
+        <!--Station info and map section -->
+        <section id="info-map" class="container">
+            <!-- Panel for displaying station information -->
+            <div class="row">
+                <div class="col-sm-6 right-pad-60 left-pad-60">
+                    <div id="station-info" class="text-content">
+                        <h2>Station Information</h2>
+                        <p>Welcome to Dublin Bikes Tracker! Select a station from the drop-down menu to check the current number of available bikes and free stands. Or find the station on the map and click its marker. These circle markers use colour to indicate bike availability and size to indicate stand availability.</p>
+                    </div>
+                    <div class="dropdown center-align">
+                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">Select a station
+                        <span class="caret"></span></button>
+                        <ul id="station-dropdown" class="dropdown-menu scrollable-menu center-align" role="menu"></ul>
+                    </div>
+                    <div id="weather" class="top-pad-20">
+                        <div><h3>Current weather</h3></div>
+                        <div id="weather-descript" class="descript center-align"></div>
+                    </div>
+                </div>
+                <!-- Google map of around station locations -->
+                <div id="map" class="col-sm-6 right-pad-60"></div>
+        </section>
+
+
+        <!-- Charts -->
+        <section id="analysis" class="container top-pad-20">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Daily Availability</h2>
+                    <canvas id="daily-chart"></canvas>
+                </div>
+                <div class="col-sm-6">
+                    <h2>Hourly Availability</h2>
+                    <canvas id="hourly-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer container-fullwidth">
+            <a href="#top" class="to-top-button"><i class="fa fa-sort-up fa-2x"></i></a>
+            <a href="/"><h2>Dublin Bikes Tracker</h2></a>
+            <div class="footer-info"><a href="/"><img src="{{ url_for('static', filename = 'images/logo.svg') }}" alt="site logo"></a></div>
+            <div class="footer-info"><span class="bold-blue">Email:&nbsp;</span>info@dbtracker.ie</div>
+        </footer>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script src="{{ url_for('static', filename = 'js/siteScript.js') }}"></script>
+    <!-- Google maps script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcjZoPZRXKwKsnPyYeC93vDyM4oe168O8&callback=initMap" async defer></script>
+
+</body>
+
+</html>

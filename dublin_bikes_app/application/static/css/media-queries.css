@@ -1,0 +1,115 @@
+@media only screen and (max-width: 1280px) {
+
+    .column-two {
+        margin: 0 auto;
+        width: 400px;
+    }
+
+    #map {
+        height: 300px;
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+
+    h1 {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    h2 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    #info-map {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #map {
+        margin-top: 30px;
+    }
+
+    .daily-descript, .detailed-descript {
+        font-size: 20px;
+        line-height: 38px;
+    }
+
+    .container-fullwidth {padding: 20px 40px 40px 40px}
+
+    .container-middle {padding: 20px 30px 20px 30px}
+
+    .column-two {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 0 20px 0;
+    }
+}
+
+@media only screen and (max-width: 567px) {
+
+    h1 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    h2 {
+        font-size: 22px;
+        line-height: 28px;
+        padding-top: 15px;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+    }
+
+    .title h1 {
+        display: block;
+        font-size: 26px;
+        line-height: 32px;
+        padding-top: 10px;
+    }
+
+    .daily-descript, .detailed-descript {
+        font-size: 20px;
+        line-height: 38px;
+    }
+
+    .container-fullwidth {padding: 0px 30px 40px 30px}
+
+    .container-middle {padding: 20px 30px 40px 30px}
+
+    #info-map {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    #info-panel {
+        padding-top: 20px;
+    }
+
+    #map {
+        margin-top: 30px;
+    }
+
+
+    .column-two {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+}
