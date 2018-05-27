@@ -2,24 +2,24 @@
 //--------------------------------------------------------------
 // Global variables
 //--------------------------------------------------------------
-const jcdUrl = "https://api.jcdecaux.com/vls/v1/stations";
-const jcdParams = "?contract=Dublin&apiKey=8b0bfe2e205616b7ebec9f675e2168f7b9726683";
-const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?id=7778677&APPID=2a4ae98d608786fcf5b6bbcf5a9467d6"
+const JCD_URL = "https://api.jcdecaux.com/vls/v1/stations";
+const JCD_PARAMS = "?contract=Dublin&apiKey=8b0bfe2e205616b7ebec9f675e2168f7b9726683";
+const WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?id=7778677&APPID=2a4ae98d608786fcf5b6bbcf5a9467d6"
 
 //--------------------------------------------------------------
 // Functions
 //--------------------------------------------------------------
 
-// Gets current weather from opeweathermaps API and displays in wether panel (div)
-function currentWeather(weatherUrl) {
-    $.getJSON(weatherUrl, function(w_result) {
+// Gets current weather from opeweathermaps API and displays in weather panel (div)
+function currentWeather(WEATHER_URL) {
+    $.getJSON(WEATHER_URL, function(w_result) {
         var weather = w_result.list[0].weather[0]
         $("#weather-descript").html(weather.description + "&nbsp" + "<img src='http://openweathermap.org/img/w/"
         + weather.icon
         + ".png' alt='weather icon'>");
     })
     .fail(function() {
-        console.log("Error: Failed to get JSON data from "+ weatherUrl);
+        console.log("Error: Failed to get JSON data from "+ WEATHER_URL);
     });
 }
 
@@ -60,14 +60,14 @@ function createBarChart(elemId, chartData, labels, title) {
             ]
         },
         options: {
-            legend: { display: false },
+            legend: {display: false},
             title: {
                 display: true,
                 text: title
             },
             scales: {
                 yAxes: [{
-                    ticks: { beginAtZero: true }
+                    ticks: {beginAtZero: true}
                 }]
             }
         }
@@ -124,7 +124,7 @@ function createLineChart(elemId, dataSeries, labels, title) {
               }
             ]
           },
-        options:{
+        options: {
             title: {
                 display: true,
                 text: title
@@ -148,7 +148,7 @@ function createLineChart(elemId, dataSeries, labels, title) {
 function updateData(stationNumber) {
 
     // Update station info panel
-    var jcdecUrl = jcdUrl+"/"+stationNumber+jcdParams;
+    var jcdecUrl = JCD_URL+"/"+stationNumber+JCD_PARAMS;
     //var html = ""
     $.getJSON(jcdecUrl, function(jcd_result) {
         // Station info
@@ -157,7 +157,7 @@ function updateData(stationNumber) {
         html += "<p>Free bike stands: " + jcd_result.available_bike_stands + "</p>";
         html += "<p>Station status: " + jcd_result.status + "</p></div>";
         // Insert all the new html into station info panel
-        document.getElementById('station-info').innerHTML = html;
+        $("#station-info").html(html);
     })
     .fail(function() {
         console.log("Error: Failed to get JSON data from "+ jcdecUrl);
@@ -194,7 +194,7 @@ function updateCharts(stationNumber) {
         hourlyChart.update();
     })
     .fail(function() {
-        console.log("Error: Failed to get JSON data from "+ flaskUrl);
+        console.log("Error: Failed to get JSON data from " + flaskUrl);
     });
 }
 
@@ -204,7 +204,7 @@ function updateCharts(stationNumber) {
 //--------------------------------------------------------------
 
 /***** Display current weather *****/
-currentWeather(weatherUrl)
+currentWeather(WEATHER_URL)
 
 /***** Dropdown list to select station *****/
 dropDownStations($SCRIPT_ROOT + "/static/data/Dublin.json");
@@ -242,7 +242,7 @@ function initMap() {
     });
 
     // Add markers to map
-    addMarkers(map, jcdUrl + jcdParams);
+    addMarkers(map, JCD_URL + JCD_PARAMS);
 }
 
 // Add marker for each station to Google map
