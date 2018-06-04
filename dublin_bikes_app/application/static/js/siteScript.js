@@ -226,7 +226,7 @@ for (var i = 0; i < 7; i++) {
     chartDataHourly[i] = Array(20).fill(0);
 }
 var labelsHourly = ["05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00", "00:00"];
-// Create daily chart in canvas on html page
+// Create hourly chart in canvas on html page
 var hourlyChart = createLineChart("hourly-chart", chartDataHourly, labelsHourly, "Average bike availability per hour per day");
 // Add inital real data from database via API call to flask app
 updateCharts("37");
