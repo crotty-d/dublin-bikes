@@ -171,8 +171,6 @@ function updateData(stationNumber) {
 function updateCharts(stationNumber) {
     var flaskUrl = $SCRIPT_ROOT + "/station_stats/" + stationNumber;
     $.getJSON(flaskUrl, function(result) {
-        //console.log("Returned historical data: ", result);
-
         // Daily chart
         //- Store and prepare the new data from the JSON file
         var dailyData = result.station_stats.daily_avg;
@@ -251,8 +249,6 @@ function addMarkers(map, url) {
         var stationData = result;
         for (var i = 0; i < stationData.length; i++) {
             var station = stationData[i];
-            //console.log(station.available_bikes);
-
             // Color marker (pin) according to availability
             var markColor = '#919191';
             if (station.available_bikes === 0) {
